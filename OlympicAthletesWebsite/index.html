@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Olympic Athletes</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">    
+    <script src="https://unpkg.com/vue@3.0.11/dist/vue.global.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div class="container">
+            <div class="jumbotron text-center overflow-hidden" style="height: 10rem; padding-top: 10px; ">
+                <h1>Olympic Athletes</h1>
+                <h5>{{statusCode}}</h5>
+                <h5>{{message}}</h5>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6" style="padding-left: 5%;"> 
+                <!-- GET ALL BUTTON -->
+                <button class="btn btn-dark w-75" id="GetAllButton" @click="getAll">Get All</button> 
+                <br/><br/>
+
+                <!-- CREATE INPUT + BUTTON -->
+                <input class="w-25" type="text" id="CreateName" placeholder="Name .." v-model="createName">
+                <input class="w-25" type="text" id="CreateCountry" placeholder="Country .." v-model="createCountry">
+                <input class="w-25" type="number" id="CreateHeight" placeholder="Height .." v-model.number="createHeight">
+                <br/>
+                <button class="btn btn-dark w-75" id="CreateButton" @click="create">Create</button>
+                <br/><br/>
+
+                <!-- DELETE INPUT + BUTTON -->
+                <input class="w-75" type="number" id="RemoveId" placeholder="Id .." v-model.number="removeId">
+                <button class="btn btn-dark w-75" id="RemoveButton" @click="remove">Remove</button>
+                <br/><br/>
+                
+                <!-- FILTER BY NAME INPUT + BUTTON -->
+                <input class="w-75" type="text" id="FilterName" placeholder="Name .." v-model="filterName">
+                <button class="btn btn-dark w-75" id="FilterNameButton" @click="filterByName">Filter by Name</button>
+                <br/><br/>
+
+                <!-- FILTER BY COUNTRY INPUT + BUTTON -->
+                <input class="w-75" type="text" id="FilterCountry" placeholder="Country .." v-model="filterCountry">
+                <button class="btn btn-dark w-75" id="FilterCountryButton" @click="filterByCountry">Filter by Country</button>
+                <br/><br/>
+
+                <!-- FILTER BY HEIGHT INPUTS + BUTTON -->
+                <div class="w-75">
+                    <input class="w-50" type="number" id="FilterMinHeight" placeholder="Min Height .." v-model.number="filterMinHeight">
+                    <input class="w-50" type="number" id="FilterMaxHeight" placeholder="Max Height .." v-model.number="filterMaxHeight">
+                </div>
+                <button class="btn btn-dark w-75" id="FilterHeightButton" @click="filterByHeight">Filter by Height</button>
+                <br/><br/>
+            </div>
+
+            <div class="col-sm-6" style="padding-right: 5%;"> 
+                    <table class="table table-bordered table-hover table-striped">
+                        <thead>
+                            <th class="text-center"><b>Id</b></th>
+                            <th class="text-center"><b>Name</b></th>
+                            <th class="text-center"><b>Country</b></th>
+                            <th class="text-center"><b>Height</b></th>
+                        </thead>
+                        <tbody>
+                            <tr v-for="athlete in athletes">
+                                <td class="text-center">{{athlete.id}}</td>
+                                <td class="text-center">{{athlete.name}}</td>
+                                <td class="text-center">{{athlete.country}}</td>
+                                <td class="text-center">{{athlete.height}}</td>
+                                
+                            </tr>
+                        </tbody>
+                    </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="vue.js"></script>
+</body>
+</html>
